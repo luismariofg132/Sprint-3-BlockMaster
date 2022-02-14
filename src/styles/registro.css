@@ -1,0 +1,33 @@
+.formLogin{
+    width: 25%;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.formLogin input{
+    width: 100%;
+    border: none;
+    margin-bottom: 15px;
+    background: var(--white);
+    border: 1px solid var(--primary);
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+.btnLogin{
+    width: 100%;
+    background-color: var(--primary);
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: none;
+}
+
+.btnGoogle{
+    width: 100%;
+    border-radius: 8px;
+    border: none;
+}
+
+.btnGoogle img{
+    width: 20%;
+}
