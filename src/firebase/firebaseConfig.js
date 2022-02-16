@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from 'firebase/firestore'
 
+
 const firebaseConfig = {
     apiKey: "AIzaSyCxPep44khxBYfeF_o6RPE4SlIt7_x2_5g",
     authDomain: "blockmaster-666e4.firebaseapp.com",
@@ -20,3 +21,5 @@ export {
     google,
     db
 }
+
+
