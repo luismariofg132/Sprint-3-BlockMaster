@@ -1,5 +1,9 @@
 import { types, typesPeliculas } from "../types/types";
 
+const initialState = {
+    pelicula: []
+}
+
 export const loginReducer = (state = {}, action) => {
     switch (action.type) {
         case types.login:
@@ -28,7 +32,7 @@ export const registerReducer = (state = {}, action) => {
     }
 }
 
-export const peliculasReducers = (state = {}, action) => {
+export const peliculasReducers = (state = initialState, action) => {
     switch (action.type) {
         case typesPeliculas.list:
             return {

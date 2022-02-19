@@ -1,16 +1,30 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import RenderPeliculas from './RenderPeliculas'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { listPeliculasAsyn } from '../../redux/actions/peliculasActions'
+
 
 const TodasPeli = () => {
 
-    const { Peliculas } = useSelector(store => store.pelicula)
-    console.log(Peliculas);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(listPeliculasAsyn())
+        console.log('Me monte');
+    }, [])
+
+    const { peliculas } = useSelector(store => store.pelicula)
+
 
     return (
         <>
             <h1 className='titleContentPelis'>Todas la peliculas</h1>
-            <RenderPeliculas />
+            {
+                peliculas?.map((peli, index) => (
+                    <div key={index} className='cardPelicula'>
+                        <img src={peli.imagen} alt="imagen" />
+                    </div>
+                ))
+            }
         </>
     )
 }
