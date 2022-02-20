@@ -11,6 +11,7 @@ const Navbar = () => {
                     <li>Todas</li>
                     <li>Mas Valoradas</li>
                     <li>Menos Valoradas</li>
+                    <li>Perfil</li>
                     <li>
                         <form>
                             <input type='text' name='nombrePelicula' className='inputHeader' placeholder='Busca tu pelicula favorita' />

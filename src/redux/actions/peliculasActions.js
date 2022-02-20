@@ -1,12 +1,16 @@
 import { typesPeliculas } from "../types/types";
 import { db } from "../../firebase/firebaseConfig";
-import { collection, doc, getDoc, getDocs, query } from "firebase/firestore";
+import { collection, getDocs, limit, orderBy, query, } from "firebase/firestore";
 
 
-export const listPeliculasAsyn = () => {
+export const listPeliculasAsyn = (num) => {
     return async (dispatch) => {
 
-        const querySnapshot = await getDocs(collection(db, "Peliculas"));
+        // const querySnapshot = await getDocs(collection(db, "Peliculas"))
+        const referencia = collection(db, "Peliculas")
+        const filtro = query(referencia, orderBy("titulo"), limit(num));
+        const querySnapshot = await getDocs(filtro)
+
         const peliculas = []
         querySnapshot.forEach((doc) => {
             peliculas.push({
@@ -14,6 +18,7 @@ export const listPeliculasAsyn = () => {
             })
             dispatch(listPeliSyn(peliculas))
         });
+
 
     }
 }

@@ -20,7 +20,6 @@ li:hover{
 }
 
 header{
-    position: fixed;
     top: 0;
     left: 0;
     height: 80px;
@@ -33,7 +32,7 @@ header{
 }
 
 .inputHeader{
-    width: 25vw;
+    width: 20vw;
     height: 40px;
     border: none;
     background: var(--white);
@@ -52,4 +51,28 @@ li button{
 
 li button:active{
    opacity: 0.9;
+}
+
+.slider{
+    width: 90%;
+    height: 50vh;
+    margin-top: 10px;
+}
+
+.slider img{
+    width: 100%;
+    height: 50vh;
+    margin: auto;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 768px){
+    .slider{
+        height: 30vh;
+    }
+    .slider img{
+        height: 30vh;
+    }
+    
 }

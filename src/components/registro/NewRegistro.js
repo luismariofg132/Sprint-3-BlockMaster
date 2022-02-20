@@ -30,6 +30,9 @@ const NewRegistro = () => {
             <input type='email' placeholder='Correo ELectronico' name='email' value={email} onChange={handleInputChange} />
             <input type='password' placeholder='Contraseña' name='password' value={password} onChange={handleInputChange} />
             <button className='btnLogin' type='submit'>Registrarse</button>
+            <button className='btnLogin' type='button' onClick={() => {
+                Navigate('/login')
+            }}>Volver a Login</button>
         </form>
     )
 }
