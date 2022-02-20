@@ -31,3 +31,9 @@
 .btnGoogle img{
     width: 20%;
 }
+
+@media screen and (max-width: 768px){
+    .formLogin{
+        width: 70%;
+    }
+}

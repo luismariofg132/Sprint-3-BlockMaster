@@ -74,5 +74,23 @@ li button:active{
     .slider img{
         height: 30vh;
     }
+    .logo img{
+        width: 40%;
+    }
+    header span{
+        display: flex;
+        justify-content: center;
+    }
+    header{
+        height: auto;
+        display: grid;
+        grid-template-rows: 10vh 20vh;
+    }
+    .inputHeader{
+        width: 50vw;
+    }
+    li button{
+        width: 9vw;
+    }
     
 }
