@@ -15,7 +15,7 @@ const Perfil = () => {
 
     useEffect(() => {
         const user = auth.currentUser;
-        if (user.photoURL !== undefined) {
+        if (user.photoURL !== null) {
             setusuario({
                 displayName: user.displayName,
                 email: user.email,
@@ -29,6 +29,8 @@ const Perfil = () => {
             })
         }
     }, [auth])
+
+    console.log(usuario);
 
     const cerrarSesion = () => {
         signOut(auth)
