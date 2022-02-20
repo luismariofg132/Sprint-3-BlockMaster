@@ -1,0 +1,37 @@
+.infoUsuario{
+    width: 30%;
+    margin: auto;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--white);
+}
+
+.infoUsuario span{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.imagenUsuario{
+    display: flex;
+    justify-content: center;
+}
+
+.imagenUsuario img{
+    width: 50%;
+    border-radius: 50%;
+}
+
+.bntCerrarSesion{
+    background-color: red;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    height: 35px;
+    width: 60%;
+}
+
+@media screen and (max-width: 768px){
+    .infoUsuario{
+        width: 95%;
+    }
+}

@@ -1,17 +1,23 @@
 import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
+    const Navigate = useNavigate()
     return (
         <header>
             <span className='logo'>
-                <img src='https://res.cloudinary.com/ddgyxfetd/image/upload/v1644598822/sprint%203/logo-blockBuster_wtclop.png' alt='logo' />
+                <img src='https://res.cloudinary.com/ddgyxfetd/image/upload/v1644598822/sprint%203/logo-blockBuster_wtclop.png' alt='logo'
+                    onClick={() =>
+                        Navigate('/')
+                    }
+                />
             </span>
             <nav>
                 <ul>
                     <li>Todas</li>
                     <li>Mas Valoradas</li>
                     <li>Menos Valoradas</li>
-                    <li>Perfil</li>
+                    <li><Link to="perfil" className='links'>Perfil</Link></li>
                     <li>
                         <form>
                             <input type='text' name='nombrePelicula' className='inputHeader' placeholder='Busca tu pelicula favorita' />

@@ -6,6 +6,7 @@ import './styles/config.css'
 import './styles/navbar.css'
 import './styles/peliculas.css'
 import './styles/registro.css'
+import './styles/usuario.css'
 import { Provider } from 'react-redux';
 import { store } from './redux/store/store';
 
