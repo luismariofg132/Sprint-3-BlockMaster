@@ -21,8 +21,9 @@
     border-radius: 50%;
 }
 
-.bntCerrarSesion{
+.bntCerrarSesion, .bntAdmin{
     background-color: red;
+    margin-bottom: 10px;
     border-radius: 5px;
     color: white;
     border: none;

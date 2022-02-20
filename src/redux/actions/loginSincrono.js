@@ -1,5 +1,6 @@
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
 import { types } from "../types/types"
+import { subirUsuario } from "./loginGoogle"
 
 export const loginSincrono = (id, displayname) => {
     return {
@@ -20,8 +21,10 @@ export const LoginUserPass = (email, password) => {
                 dispatch(
                     loginSincrono(user.uid, user.displayName)
                 )
+                subirUsuario(user.uid, user.displayName, user.email)
                 console.log('sirvio')
             })
             .catch(e => console.log(e))
     }
 }
+

@@ -11,6 +11,8 @@ const TodasPeli = () => {
 
     const { peliculas } = useSelector(store => store.pelicula)
 
+
+
     useEffect(function llamarPeliculas() {
         dispatch(listPeliculasAsyn(numPeliculas))
     }, [numPeliculas, dispatch])

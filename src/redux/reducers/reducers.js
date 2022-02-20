@@ -14,6 +14,19 @@ export const loginReducer = (state = {}, action) => {
 
         case types.logout:
             return {}
+
+        default:
+            return state
+    }
+}
+
+
+export const typeUserReducer = (state = false, action) => {
+    switch (action.type) {
+        case types.typeUser:
+            return {
+                admin: action.payload
+            }
         default:
             return state
     }

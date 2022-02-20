@@ -1,15 +1,23 @@
 import { getAuth, signOut } from 'firebase/auth'
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { consultaTypeUser } from '../../redux/actions/usuarioActions'
 
 const Perfil = () => {
 
     const auth = getAuth()
+    const dispatch = useDispatch()
+    // const { peliculas } = useSelector(store => store.pelicula)
+    const { admin } = useSelector(store => store.user)
+    console.log(admin);
 
     const [usuario, setusuario] = useState({
         displayName: "",
         email: "",
         photoURL: ""
     })
+
+    // const [admin, setadmin] = useState(false)
 
     const { displayName, email, photoURL } = usuario
 
@@ -30,7 +38,9 @@ const Perfil = () => {
         }
     }, [auth])
 
-    console.log(usuario);
+    useEffect(() => {
+        dispatch(consultaTypeUser())
+    }, [dispatch])
 
     const cerrarSesion = () => {
         signOut(auth)
@@ -48,6 +58,9 @@ const Perfil = () => {
                 </div>
                 <center>
                     <button onClick={() => cerrarSesion()} type="button" className='bntCerrarSesion'>Cerrar Sesion</button>
+                </center>
+                <center>
+                    <button type="button" className='bntAdmin'>Administrar Datos</button>
                 </center>
             </div>
         </div>

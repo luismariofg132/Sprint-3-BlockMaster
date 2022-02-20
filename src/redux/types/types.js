@@ -1,7 +1,8 @@
 export const types = {
     login: 'login',
     register: 'registro',
-    logout: 'logout'
+    logout: 'logout',
+    typeUser: 'Administrador'
 }
 
 export const typesPeliculas = {
