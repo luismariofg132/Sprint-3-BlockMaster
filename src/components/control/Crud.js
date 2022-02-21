@@ -1,4 +1,4 @@
-import { doc, updateDoc } from 'firebase/firestore'
+import { addDoc, collection, deleteDoc, doc, updateDoc } from 'firebase/firestore'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { db } from '../../firebase/firebaseConfig'
@@ -19,9 +19,7 @@ const Crud = () => {
         uid: ''
     })
 
-    const { titulo, voto, imagen, descripcion } = values
-
-
+    const { titulo, voto, imagen, descripcion, uid, id } = values
 
     const Buscar = () => {
         dispatch(BuscarPeliculaAsyn(titulo))
@@ -39,6 +37,22 @@ const Crud = () => {
         }).then(dispatch(listPeliculasAsyn()))
     }
 
+    const Eliminar = async () => {
+        await deleteDoc(doc(db, "Peliculas", uid))
+    }
+
+    const Agregar = (Datos) => {
+        const nuevaPelicula = {
+            titulo: Datos.titulo,
+            voto: Datos.voto,
+            descripcion: Datos.descripcion,
+            imagen: Datos.imagen,
+            id: Datos.id
+        }
+        addDoc(collection(db, "Peliculas"), nuevaPelicula)
+            .then(listPeliculasAsyn())
+    }
+
     const MostrarDatos = () => {
         if (Datos !== undefined || Datos !== null) {
             setValues({
@@ -50,10 +64,6 @@ const Crud = () => {
                 uid: Datos.uid
             })
         }
-    }
-
-    const Eliminar = () => {
-
     }
 
     return (
@@ -68,13 +78,18 @@ const Crud = () => {
                 <input type="text" name='imagen' onChange={handleInputChange} value={imagen} placeholder='Imagen' />
             </div>
             <div>
+                <input type="text" name='id' onChange={handleInputChange} value={id} placeholder='Id pelicula' />
+            </div>
+            <div>
                 <textarea name='descripcion' onChange={handleInputChange} value={descripcion} placeholder='Descripcion'></textarea>
             </div>
             <div>
                 <button className='btnLogin' type='button'
                     onClick={() => Buscar()}
                 >Buscar</button>
-                <button className='btnLogin' type='button'>Agregar</button>
+                <button className='btnLogin' type='button'
+                    onClick={() => Agregar(values)}
+                >Agregar</button>
                 <button className='btnLogin' type='button'
                     onClick={() => Actualizar(values)}
                 >Actualizar</button>
