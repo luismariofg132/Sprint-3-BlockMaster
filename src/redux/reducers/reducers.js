@@ -52,6 +52,11 @@ export const peliculasReducers = (state = initialState, action) => {
                 peliculas: [...action.payload]
             }
 
+        case typesPeliculas.search:
+            return {
+                Datos: action.payload
+            }
+
         default:
             return state
     }

@@ -116,6 +116,23 @@ transition: opacity 400ms ease-in;
     transform: matrix(0.71, -0.41, 1.22, 0.71, 0, 0)
 }
 
+.contFormCrud{
+    width: 40%;
+    margin: auto;
+}
+
+.contFormCrud input{
+    width: 100%;
+    margin: 10px 0;
+}
+
+.contFormCrud textarea{
+    width: 100%;
+    height: 60%;
+    margin: 10px 0;
+    resize: none;
+}
+
 @media screen and (max-width: 768px){
     .contenedorPeliculaModal{
         display: block;

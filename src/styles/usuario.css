@@ -21,7 +21,7 @@
     border-radius: 50%;
 }
 
-.bntCerrarSesion, .bntAdmin{
+.bntCerrarSesion{
     background-color: red;
     margin-bottom: 10px;
     border-radius: 5px;
@@ -29,6 +29,17 @@
     border: none;
     height: 35px;
     width: 60%;
+}
+
+.bntAdmin{
+    background-color: red;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    height: 35px;
+    width: 60%;
+    display: none;
 }
 
 @media screen and (max-width: 768px){

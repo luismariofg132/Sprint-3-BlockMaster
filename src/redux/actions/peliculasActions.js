@@ -1,6 +1,6 @@
 import { typesPeliculas } from "../types/types";
 import { db } from "../../firebase/firebaseConfig";
-import { collection, getDocs, limit, orderBy, query, } from "firebase/firestore";
+import { collection, getDocs, limit, orderBy, query, where, } from "firebase/firestore";
 
 
 export const listPeliculasAsyn = (num) => {
@@ -20,6 +20,26 @@ export const listPeliculasAsyn = (num) => {
         });
 
 
+    }
+}
+
+export const BuscarPeliculaAsyn = (Nombre) => {
+    return async (dispatch) => {
+        const peliculasRef = collection(db, "Peliculas");
+        const q = query(peliculasRef, where("titulo", "==", Nombre));
+        const querySnapshop = await getDocs(q)
+        querySnapshop.forEach((doc) => {
+            const data = doc.data()
+            console.log(data);
+            dispatch(BuscarPelicula(data))
+        })
+    }
+}
+
+export const BuscarPelicula = (Datos) => {
+    return {
+        type: typesPeliculas.search,
+        payload: Datos
     }
 }
 

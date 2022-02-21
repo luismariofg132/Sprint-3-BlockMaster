@@ -1,23 +1,21 @@
 import { getAuth, signOut } from 'firebase/auth'
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { consultaTypeUser } from '../../redux/actions/usuarioActions'
 
-const Perfil = () => {
+const Perfil = memo(() => {
 
     const auth = getAuth()
     const dispatch = useDispatch()
-    // const { peliculas } = useSelector(store => store.pelicula)
     const { admin } = useSelector(store => store.user)
-    console.log(admin);
+    const Navigate = useNavigate()
 
     const [usuario, setusuario] = useState({
         displayName: "",
         email: "",
         photoURL: ""
     })
-
-    // const [admin, setadmin] = useState(false)
 
     const { displayName, email, photoURL } = usuario
 
@@ -46,6 +44,17 @@ const Perfil = () => {
         signOut(auth)
     }
 
+    const comprobarAdmin = () => {
+        if (admin) {
+            document.getElementById('bntAdmin').style.display = 'block';
+        }
+    }
+    comprobarAdmin()
+
+    const redireccionar = () => {
+        Navigate('/controlDatos')
+    }
+
     return (
         <div>
             <div className='infoUsuario'>
@@ -60,11 +69,11 @@ const Perfil = () => {
                     <button onClick={() => cerrarSesion()} type="button" className='bntCerrarSesion'>Cerrar Sesion</button>
                 </center>
                 <center>
-                    <button type="button" className='bntAdmin'>Administrar Datos</button>
+                    <button type="button" className='bntAdmin' id='bntAdmin' onClick={() => redireccionar()}>Administrar Datos</button>
                 </center>
             </div>
         </div>
     )
-}
+})
 
 export default Perfil

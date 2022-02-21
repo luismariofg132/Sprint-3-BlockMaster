@@ -18,6 +18,7 @@ const AppRouters = () => {
             if (user?.uid) {
                 // console.log(user)
                 setisLogin(true)
+
             }
             else {
                 setisLogin(false)
