@@ -1,8 +1,8 @@
 import { typesPeliculas } from "../types/types";
 import { db } from "../../firebase/firebaseConfig";
-import { collection, getDocs, limit, orderBy, query, where, } from "firebase/firestore";
+import { collection, doc, getDocs, limit, orderBy, query, updateDoc, where, } from "firebase/firestore";
 
-
+// Listar
 export const listPeliculasAsyn = (num) => {
     return async (dispatch) => {
 
@@ -23,6 +23,7 @@ export const listPeliculasAsyn = (num) => {
     }
 }
 
+// Buscar
 export const BuscarPeliculaAsyn = (Nombre) => {
     return async (dispatch) => {
         const peliculasRef = collection(db, "Peliculas");
@@ -30,8 +31,27 @@ export const BuscarPeliculaAsyn = (Nombre) => {
         const querySnapshop = await getDocs(q)
         querySnapshop.forEach((doc) => {
             const data = doc.data()
-            console.log(data);
-            dispatch(BuscarPelicula(data))
+            const DocId = doc.id;
+            const datosPeli = {
+                titulo: data.titulo,
+                voto: data.voto,
+                imagen: data.imagen,
+                id: data.id,
+                descripcion: data.descripcion,
+                uid: DocId
+            }
+            dispatch(BuscarPelicula(datosPeli))
+        })
+    }
+}
+
+// Actualizar
+export const ActualizarPeliculaAsyn = (Datos) => {
+    return async (dispatch) => {
+        const peliculaRef = doc(db, "Peliculas", Datos.id)
+        console.log(peliculaRef)
+        await updateDoc(peliculaRef, {
+            Datos
         })
     }
 }

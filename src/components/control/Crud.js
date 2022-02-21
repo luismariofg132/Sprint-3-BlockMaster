@@ -1,26 +1,60 @@
+import { doc, updateDoc } from 'firebase/firestore'
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { db } from '../../firebase/firebaseConfig'
 import { useForm } from '../../hooks/useForm'
-import { BuscarPeliculaAsyn } from '../../redux/actions/peliculasActions'
+import { BuscarPeliculaAsyn, listPeliculasAsyn } from '../../redux/actions/peliculasActions'
 
 const Crud = () => {
 
     const dispatch = useDispatch()
+    const { Datos } = useSelector(store => store.pelicula)
 
-    const [values, handleInputChange] = useForm({
+    const [values, handleInputChange, setValues] = useForm({
         titulo: '',
         voto: '',
         imagen: '',
-        descripcion: ''
+        descripcion: '',
+        id: '',
+        uid: ''
     })
 
     const { titulo, voto, imagen, descripcion } = values
 
+
+
     const Buscar = () => {
         dispatch(BuscarPeliculaAsyn(titulo))
+        MostrarDatos()
     }
 
-    console.log(titulo)
+    const Actualizar = async (Datos) => {
+        const peliculaRef = doc(db, "Peliculas", Datos.uid)
+        await updateDoc(peliculaRef, {
+            titulo: Datos.titulo,
+            voto: Datos.voto,
+            descripcion: Datos.descripcion,
+            imagen: Datos.imagen,
+            id: Datos.id
+        }).then(dispatch(listPeliculasAsyn()))
+    }
+
+    const MostrarDatos = () => {
+        if (Datos !== undefined || Datos !== null) {
+            setValues({
+                titulo: Datos.titulo,
+                voto: Datos.voto,
+                imagen: Datos.imagen,
+                descripcion: Datos.descripcion,
+                id: Datos.id,
+                uid: Datos.uid
+            })
+        }
+    }
+
+    const Eliminar = () => {
+
+    }
 
     return (
         <div className='contFormCrud'>
@@ -41,6 +75,12 @@ const Crud = () => {
                     onClick={() => Buscar()}
                 >Buscar</button>
                 <button className='btnLogin' type='button'>Agregar</button>
+                <button className='btnLogin' type='button'
+                    onClick={() => Actualizar(values)}
+                >Actualizar</button>
+                <button className='btnLogin' type='button'
+                    onClick={() => Eliminar()}
+                >Eliminar</button>
             </div>
         </div>
     )
